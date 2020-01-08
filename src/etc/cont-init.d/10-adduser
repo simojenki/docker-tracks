@@ -1,0 +1,23 @@
+#!/usr/bin/with-contenv bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+PUID=${PUID:-1099}
+PGID=${PGID:-1099}
+
+groupadd \
+    --gid "$PGID" \
+    tracks
+
+useradd \
+    --home-dir "/data" \
+    --gid tracks \
+    --no-create-home \
+    --uid "$PUID" \
+    --shell "/usr/sbin/nologin" \
+    tracks
+
+echo "Added user -> tracks(uid:$(id -u tracks), gid:$(id -g tracks))"
+

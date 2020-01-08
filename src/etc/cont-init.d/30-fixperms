@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+chown -R tracks:tracks /data
+chown -R tracks:tracks /config
+

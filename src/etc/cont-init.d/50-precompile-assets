@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+sudo -H -u tracks bash -c "cd /opt/tracks && bundle exec rake assets:precompile RAILS_ENV=production"

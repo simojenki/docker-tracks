@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+mkdir -p /data/log /data
+echo "--- $(date) ---" >> /data/log/production.log
+
+rm -Rf /data/tmp && mkdir -p /data/tmp
+
+rm -Rf /data/assets && mkdir -p /data/assets
+
+echo "no idea what this is for" > /etc/app-env
+
