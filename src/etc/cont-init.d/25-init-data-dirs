@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-mkdir -p /data/log /data/nginx/temp "/data/assets/${TRACKS_VERSION}"
+mkdir -p /data/log /data/tmp /data/nginx/temp "/data/assets/${TRACKS_VERSION}"
 
 echo "--- $(date) ---" >> /data/log/production.log
 echo "Adding app-env file so that start up script doesn't try and run docker-compose" > /etc/app-env
