@@ -7,17 +7,17 @@ set -o nounset
 readonly _TZ=${TZ:-UTC}
 readonly _SECRET_TOKEN=$(date +%s | sha256sum | base64 | head -c 32 ; echo)
 
-[ ! -e /config/site.yml ] && \
+[[ ! -e /config/site.yml ]] && \
     echo "No existing site.yml, creating..." && \
     cat /opt/tracks/config/site.yml.tmpl \
-        | sed "s/UTC/${_TZ}/g" \
+        | sed "s!UTC!${_TZ}!g" \
         | sed "s/secret_token: \"change-me\"/secret_token: \"${_SECRET_TOKEN}\"/g" \
         | sed "s/# serve_static_assets: false/serve_static_assets: true/g" \
         > /config/site.yml
 
 ln -sf /config/site.yml /opt/tracks/config/site.yml
 
-[ ! -e /config/database.yml ] && \
+[[ ! -e /config/database.yml ]] && \
     echo "No existing database.yml, using sqlite3 default..." && \
     cp /opt/tracks/config/database.sqlite3.yml /config/database.yml
 
