@@ -6,6 +6,7 @@ set -o nounset
 
 readonly _TZ=${TZ:-UTC}
 readonly _SECRET_TOKEN=$(date +%s | sha256sum | base64 | head -c 32 ; echo)
+readonly _FORCE_SSL=${FORCE_SSL:-false}
 
 [[ ! -e /config/site.yml ]] && \
     echo "No existing site.yml, creating..." && \
@@ -13,6 +14,7 @@ readonly _SECRET_TOKEN=$(date +%s | sha256sum | base64 | head -c 32 ; echo)
         | sed "s!UTC!${_TZ}!g" \
         | sed "s/secret_token: \"change-me\"/secret_token: \"${_SECRET_TOKEN}\"/g" \
         | sed "s/# serve_static_assets: false/serve_static_assets: true/g" \
+        | sed "s/force_ssl: false/force_ssl: ${_FORCE_SSL}/g" \
         > /config/site.yml
 
 ln -sf /config/site.yml /opt/tracks/config/site.yml
