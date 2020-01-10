@@ -52,7 +52,7 @@ ADD src/config/database.sqlite3.yml /opt/tracks/config/database.sqlite3.yml
 
 RUN rm /tmp/*
 
-EXPOSE 3000/tcp
+EXPOSE 8080/tcp
 
 VOLUME /data
 VOLUME /config
