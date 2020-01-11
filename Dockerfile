@@ -30,6 +30,7 @@ ADD https://github.com/TracksApp/tracks/archive/v${TRACKS_VERSION}.tar.gz /tmp
 RUN cd /opt && \
     tar xfz /tmp/v${TRACKS_VERSION}.tar.gz && \
     ln -s "/opt/tracks-${TRACKS_VERSION}" /opt/tracks && \
+    sed -i "s!function relative_to_root(path) { return '<%= root_url %>'+path; };!function relative_to_root(path) { return '/'+path; };!g" /opt/tracks/app/views/layouts/application.html.erb && \
     cd "/opt/tracks-${TRACKS_VERSION}" && \
     echo "gem: --no-rdoc --no-ri" > /root/.gemrc && \
     bundle config set jobs 4 && \
