@@ -39,7 +39,7 @@ RUN cd /opt && \
     bundle install && \
     rm -Rf "/opt/tracks-${TRACKS_VERSION}/log" && \
     ln -sf /data/log "/opt/tracks-${TRACKS_VERSION}/log" && \
-    ln -sf /data/tmp "/opt/tracks-${TRACKS_VERSION}/tmp" && \
+    ln -sf /tmp "/opt/tracks-${TRACKS_VERSION}/tmp" && \
     ln -sf "/data/assets/${TRACKS_VERSION}" "/opt/tracks-${TRACKS_VERSION}/public/assets" && \
     rm /etc/nginx/sites-enabled/default && \
     ln -s /etc/nginx/sites-available/tracks /etc/nginx/sites-enabled/tracks
